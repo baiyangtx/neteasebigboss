@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"  rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="navbar navbar-inverse navbar-static-top" role="navigation" th:fragment="unlogin">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header navbar-right">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">首页</span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">首页</a>
+        </div>
+        <div  class="collapse navbar-collapse" >
+            <ul class="nav navbar-nav">
+                <li><a href="/login.html">请[登录]</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation" th:fragment="buyer">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header navbar-right">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">首页</span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">首页</a>
+        </div>
+        <div  class="collapse navbar-collapse" >
+            <ul class="nav navbar-nav">
+                <li><a href="#">你好[买家]</a></li>
+                <li><a href="#">财务</a></li>
+                <li><a href="#">购物车</a></li>
+                <li><a href="/j_spring_security_logout">登出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation" th:fragment="seller">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header navbar-right">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">首页</span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">首页</a>
+        </div>
+        <div  class="collapse navbar-collapse" >
+            <ul class="nav navbar-nav">
+                <li><a href="#" th:text="'你好[' + ${user.username} +']'">你好[卖家]</a></li>
+                <li><a href="/publish.html">发布</a></li>
+                <li><a href="/logout">登出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- jQuery -->
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

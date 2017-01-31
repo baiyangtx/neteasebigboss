@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div role="tabpanel" class="tab-pane active" id="all"
+     th:fragment="unlogin">
+    <div class="row">
+        <div class="col-md-3" th:each="item : ${items}">
+            <a class="thumbnail" href="#" th:href="@{/item/{itemId}.html(itemId=${item.id})}">
+                <div class="box">
+                    <img class="img-circle img-responsive" src="#"  alt="..."
+                         th:src="${item.src}" th:alt="${item.descript}">
+                </div>
+                <div class="caption">
+                    <h4 th:text="${item.title}">Title</h4>
+                    <label >价格:<span th:text="${item.price}"></span></label>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div role="tabpanel" class="tab-pane active" id="all"
+     th:fragment="seller">
+    <div class="row">
+        <div class="col-md-3" th:each="item : ${items}">
+            <a class="thumbnail" href="#" th:href="@{/item/{itemId}.html(itemId=${item.id})}">
+                <div class="box">
+                <img class="img-circle img-responsive" src="#"  alt="..."
+                     th:src="${item.src}" th:alt="${item.descript}">
+                </div>
+                <div class="caption">
+                    <h4 th:text="${item.title}">Title</h4>
+                    <label >价格:<span th:text="${item.price}"></span></label>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div role="tabpanel" class="tab-pane active" id="all"
+     th:fragment="buyer">
+    <div class="row">
+        <div class="col-md-3" th:each="item : ${items}">
+            <a class="thumbnail" href="#" th:href="@{/item/{itemId}.html(itemId=${item.id})}">
+                <div class="box">
+                    <img class="img-circle img-responsive" src="#"  alt="..."
+                         th:src="${item.src}" th:alt="${item.descript}">
+                </div>
+                <div class="caption">
+                    <h4 th:text="${item.title}">Title</h4>
+                    <label >价格:<span th:text="${item.price}"></span></label>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

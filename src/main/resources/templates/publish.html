@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap Core CSS -->
+    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"  rel="stylesheet">
+    <title>发布</title>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation"
+     th:replace="fragments/header:: ${role}">
+
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form action="/publish" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">标题</label>
+                    <input type="text" class="form-control"
+                           id="title" name="title" placeholder="标题">
+                </div>
+                <div class="form-group">
+                    <label for="description">描述</label>
+                    <input type="text" class="form-control"
+                           id="description" name="description" placeholder="描述">
+                </div>
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#upload" role="tab"
+                           data-toggle="tab" data-value="upload">上传图片</a></li>
+                    <li role="presentation">
+                        <a href="#network" role="tab"
+                           data-toggle="tab" data-value="network">网络图片</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="upload">
+                        <div class="form-group"  id="itemimg" >
+                            <label >选择图片</label>
+                            <input type="file" class="form-control" name="file">
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="network">
+                        <div class="form-group" id="itemurl" >
+                            <label>图片网址</label>
+                            <input type="url" class="form-control"  name="imgurl" placeholder="url">
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="imgtype" name="imgtype" value="upload">
+                <div class="form-group">
+                    <label for="description">正文</label>
+                    <textarea class="form-control" rows="3" name="content" placeholder="正文"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="description">价格</label>
+                    <input type="number" class="form-control"
+                           name="price" placeholder="价格" value="10">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<!-- jQuery -->
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var value = $(this).attr('data-value') ;
+            $("#imgtype").val(value) ;
+            console.log(value);
+        });
+    });
+
+
+</script>
+</body>
+</html>
