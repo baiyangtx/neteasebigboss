@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- Bootstrap Core CSS -->
     <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"  rel="stylesheet">
-    <title>发布</title>
+    <title>编辑</title>
 </head>
 <body>
 <!-- Navigation -->
@@ -17,15 +17,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <form action="/publish" method="post" enctype="multipart/form-data">
+            <form action="/edit" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">标题</label>
                     <input type="text" class="form-control"
-                           id="title" name="title" placeholder="标题">
+                           id="title" name="title" placeholder="标题"
+                           th:value="${item.title}">
                 </div>
+                <input type="hidden" name="id" th:value="${item.id}">
                 <div class="form-group">
                     <label for="description">描述</label>
-                    <input type="text" class="form-control"
+                    <input type="text" class="form-control" th:value="${item.descript}"
                            id="description" name="description" placeholder="描述">
                 </div>
 
@@ -47,21 +49,24 @@
                     <div role="tabpanel" class="tab-pane" id="network">
                         <div class="form-group" id="itemurl" >
                             <label>图片网址</label>
-                            <input type="url" class="form-control"  name="imgurl" placeholder="url">
+                            <input type="text" class="form-control" th:value="${item.src}"
+                                   name="imgurl" placeholder="url">
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="imgtype" name="imgtype" value="upload">
+                <input type="hidden" id="imgtype"
+                       name="imgtype" value="upload" th:value="${imgfiletype}">
                 <div class="form-group">
                     <label for="description">正文</label>
-                    <textarea class="form-control" rows="3" name="content" placeholder="正文"></textarea>
+                    <textarea class="form-control" rows="3"
+                            th:text="${item.content}"  name="content" placeholder="正文"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="description">价格</label>
-                    <input type="number" class="form-control"
+                    <input type="number" class="form-control" th:value="${item.price}"
                            name="price" placeholder="价格" value="10">
                 </div>
-                <button type="submit" class="btn btn-success">发布</button>
+                <button type="submit" class="btn btn-success">编辑</button>
 
             </form>
         </div>

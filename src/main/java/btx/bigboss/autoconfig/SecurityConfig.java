@@ -17,7 +17,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
     private static String[] UNSECURITY_RESOURCE = {
             "/webjars/**" , "/images/**" , "/css/**" , "/js/**" ,
-            "/" , "/index.html" , "/login.html" , "/itemimage/**"
+            "/" , "/index.html" , "/login.html" , "/itemimage/**" ,
+            "/item/**.html"
     } ;
 
 

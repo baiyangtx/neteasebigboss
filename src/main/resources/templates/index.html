@@ -28,13 +28,17 @@
     <div class="container">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#all" role="tab" data-toggle="tab" >所有商品</a></li>
-
+            <li role="presentation" th:if="${role}=='buyer'">
+                <a href="#unbuyed" role="tab" data-toggle="tab" >未购买</a>
+            </li>
         </ul>
 
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="all"
                  th:replace="fragments/allitems:: ${role}">
-
+            </div>
+            <div role="tabpanel" class="tab-pane" id="unbuyed"
+                 th:replace="fragments/allitems::unbuyed" th:if="${role}=='buyer'">
             </div>
         </div>
     </div>

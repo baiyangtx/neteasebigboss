@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap Core CSS -->
+    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"  rel="stylesheet">
+    <title>结算</title>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation"
+     th:replace="fragments/header:: ${role}">
+
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="page-header">
+                <h3>结算</h3>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>商品</th>
+                        <th>价格</th>
+                        <th>数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cart:${carts}">
+                        <td th:text="${cartStat.index}"></td>
+                        <td th:text="${cart.item.title}"></td>
+                        <td th:text="${cart.item.price}"></td>
+                        <td th:text="${cart.num}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" th:href="@{${referer}}" class="btn btn-default">返回</a>
+            <form action="/buy" method="post">
+                <button  class="btn btn-success pull-right">购买</button>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<!-- jQuery -->
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var value = $(this).attr('data-value') ;
+            $("#imgtype").val(value) ;
+            console.log(value);
+        });
+    });
+
+
+</script>
+</body>
+</html>

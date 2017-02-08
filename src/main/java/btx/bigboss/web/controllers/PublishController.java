@@ -4,6 +4,7 @@ import btx.bigboss.beans.Item;
 import btx.bigboss.beans.User;
 import btx.bigboss.repositories.ItemRepository;
 import btx.bigboss.repositories.UserRepository;
+import btx.bigboss.utils.FileUtils;
 import btx.bigboss.utils.MD5Utils;
 import com.google.common.collect.Maps;
 import org.apache.commons.logging.Log;
@@ -83,7 +84,7 @@ public class PublishController {
         item.setPublisher(user);
         itemRepository.save(item);
         logger.debug(item);
-        return "redirect:/";
+        return "redirect:/item/" + item.getId() + ".html";
     }
 
 
@@ -92,20 +93,6 @@ public class PublishController {
 
 
     private String handleUploadImageFile(MultipartFile file,int userid ) throws IOException {
-        String originalFilename = file.getOriginalFilename() ;
-        String filename = userid + "" + System.currentTimeMillis() + originalFilename ;
-        filename = MD5Utils.string2MD5(filename) ;
-
-        File savePath = new File(imgSavePath);
-        if (!savePath.exists()){
-            if(!savePath.mkdirs() ){
-                throw new IllegalStateException("mkdir for " + imgSavePath + " failed") ;
-            }
-        }
-
-        File imgfile = new File(imgSavePath + File.separator + filename );
-        file.transferTo(imgfile);
-
-        return filename ;
+        return FileUtils.handleUploadImageFile(file,userid,imgSavePath) ;
     }
 }

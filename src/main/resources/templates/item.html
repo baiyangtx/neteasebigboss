@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap Core CSS -->
+    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"  rel="stylesheet">
+    <title>查看</title>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation"
+     th:replace="fragments/header:: ${role}">
+
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <label  class="col-md-2 control-label">标题</label>
+                        <div class="col-md-10" th:text="${item.title}"></div>
+                    </div>
+                    <div class="row">
+                        <label  class="col-md-2 control-label">描述</label>
+                        <div class="col-md-10" th:text="${item.descript}"></div>
+                    </div>
+                    <div class="row">
+                        <label  class="col-md-2 control-label">正文</label>
+                        <div class="col-md-10" th:text="${item.content}"></div>
+                    </div>
+                    <div class="row">
+                        <label  class="col-md-2 control-label">价格</label>
+                        <div class="col-md-10" th:text="${item.price}"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 thumbnail">
+                    <img src="#" th:src="${item.src}" class="img-circle" style="max-height: 250px">
+                </div>
+            </div>
+            <div class="row" th:if="${role}=='buyer'">
+                <button class="btn btn-success" data-toggle="modal" data-target="#myModal"> 购买</button>
+
+                <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                    <div class="modal-dialog" role="document">
+                        <form action="/addcart" method="post">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button"
+                                        class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">购买</h4>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-md-offset-3 col-md-3">
+                                    <p>购买商品 <span th:text="${item.title}"></span></p>
+                                    <div class="form-group">
+                                        <label >数量</label>
+                                        <input type="number" class="form-control"
+                                               name="number" placeholder="数量" value="1">
+                                    </div>
+                                    <input type="hidden" name="itemid" th:value="${item.id}">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="submit" class="btn btn-primary" >加入购物车</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                        </form>
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+            </div>
+            <div class="row" th:if="${role}=='seller'">
+                <a class="btn btn-success" th:href="@{/item/edit/{itemid}.html(itemid=${item.id})}" href="#"> 编辑</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<!-- jQuery -->
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var value = $(this).attr('data-value') ;
+            $("#imgtype").val(value) ;
+            console.log(value);
+        });
+    });
+
+
+</script>
+</body>
+</html>

@@ -26,16 +26,26 @@
      th:fragment="seller">
     <div class="row">
         <div class="col-md-3" th:each="item : ${items}">
-            <a class="thumbnail" href="#" th:href="@{/item/{itemId}.html(itemId=${item.id})}">
+            <div class="thumbnail" href="#" >
                 <div class="box">
                 <img class="img-circle img-responsive" src="#"  alt="..."
                      th:src="${item.src}" th:alt="${item.descript}">
                 </div>
                 <div class="caption">
-                    <h4 th:text="${item.title}">Title</h4>
+                    <p>
+                    <label th:text="${item.title}">Title</label>
+                    <span class="badge" th:text="'已售出:'+${item.selledCount}"> </span>
+                        <br>
                     <label >价格:<span th:text="${item.price}"></span></label>
+                    </p>
+                    <p>
+                    <a href="#" class="btn btn-default"
+                           th:href="@{/item/{itemId}.html(itemId=${item.id})}">详细</a>
+                    <a href="#" th:if="${item.selledCount}==0" class="btn btn-default pull-right"
+                       th:href="@{/item/delete/{itemId}(itemId=${item.id})}">删除</a>
+                    </p>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </div>
@@ -49,6 +59,28 @@
                          th:src="${item.src}" th:alt="${item.descript}">
                 </div>
                 <div class="caption">
+                    <label th:text="${item.title}">Title</label>
+                    <span class="badge" th:if="${item.buyed}"> 已购买</span>
+                    <br>
+                    <label >价格:<span th:text="${item.price}"></span></label>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- buyer  unbuyed items -->
+<div role="tabpanel" class="tab-pane" id="unbuyed"
+     th:fragment="unbuyed">
+    <div class="row">
+        <div class="col-md-3" th:each="item : ${unbuyedItems}">
+            <a class="thumbnail" href="#" th:href="@{/item/{itemId}.html(itemId=${item.id})}">
+                <div class="box">
+                    <img class="img-circle img-responsive" src="#"  alt="..."
+                         th:src="${item.src}" th:alt="${item.descript}">
+                </div>
+                <div class="caption">
                     <h4 th:text="${item.title}">Title</h4>
                     <label >价格:<span th:text="${item.price}"></span></label>
                 </div>
@@ -56,5 +88,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

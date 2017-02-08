@@ -2,6 +2,7 @@ package btx.bigboss.listeners;
 
 import btx.bigboss.beans.User;
 import btx.bigboss.repositories.UserRepository;
+import btx.bigboss.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContextEvent;
@@ -48,23 +49,26 @@ public class ApplicationServletContextListener implements ServletContextListener
 
     private void initUser(){
         User buyer = userRepository.findByAccount("buyer");
+        String md5Buyer = MD5Utils.string2MD5("reyub") ;
         if( buyer == null ){
             buyer = new User() ;
             buyer.setUsername("买家");
             buyer.setAccount("buyer");
-            buyer.setPassword("reyub");
+            buyer.setPassword(md5Buyer);
             buyer.setRole(User.BUYER);
             userRepository.save(buyer);
         }
-
+        System.out.println("MD5 of reyub:" + md5Buyer);
         User seller = userRepository.findByAccount("seller");
+        String md5Seller =MD5Utils.string2MD5("relles") ;
         if ( seller == null ){
             seller = new User() ;
             seller.setUsername("卖家");
             seller.setAccount("seller");
-            seller.setPassword("relles");
+            seller.setPassword(md5Seller);
             seller.setRole(User.SELLER);
             userRepository.save(seller);
         }
+        System.out.println("MD5 of relles:" + md5Seller);
     }
 }
